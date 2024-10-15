@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://go2hmj2s0gyu"]
+
+[node name="StraightPipe" type="Node2D"]
+
+[node name="PipeSprite" type="Sprite2D" parent="."]
+clip_children = 2
+
+[node name="StraightFlow" type="Sprite2D" parent="PipeSprite"]
