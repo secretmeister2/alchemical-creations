@@ -10,4 +10,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	for body in $NearDetector.get_overlapping_bodies():
+		var vect = body.get_global_position()- self.get_global_position()
+		self.apply_central_force(vect*20)
+		body.apply_central_force(vect*20)
+	if self.global_position.y < 0:
+		self.queue_free()

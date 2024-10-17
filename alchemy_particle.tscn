@@ -3,13 +3,14 @@
 [ext_resource type="Script" path="res://alchemy_particle.gd" id="1_xmgco"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_omkw1"]
+friction = 0.5
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_80ijx"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uw750"]
+radius = 5.0
 
-[node name="AlchemyParticle" type="RigidBody2D"]
+[node name="FluidHandler" type="RigidBody2D"]
 mass = 0.1
 physics_material_override = SubResource("PhysicsMaterial_omkw1")
-lock_rotation = true
 continuous_cd = 1
 contact_monitor = true
 max_contacts_reported = 5
@@ -17,5 +18,5 @@ script = ExtResource("1_xmgco")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_80ijx")
+[node name="ParticleCollider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uw750")
