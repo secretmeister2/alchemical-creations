@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c1y6aaeql14mu"]
+
+[ext_resource type="Script" path="res://draggable.gd" id="1_rkdlc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hfx0w"]
+size = Vector2(64, 64)
+
+[node name="Draggable" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchor_right = 0.056
+anchor_bottom = 0.099
+offset_right = -0.512001
+offset_bottom = -0.152008
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rkdlc")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_hfx0w")
+
+[connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

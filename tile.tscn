@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://db4asmdj6tids"]
+
+[ext_resource type="Texture2D" uid="uid://duulbs05j8r8t" path="res://tile.png" id="1_erxwq"]
+[ext_resource type="Script" path="res://tile.gd" id="1_hbcrr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x8lbj"]
+size = Vector2(64, 64)
+
+[node name="Tile" type="Control"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_hbcrr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_erxwq")
+
+[node name="TileArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileArea"]
+shape = SubResource("RectangleShape2D_x8lbj")

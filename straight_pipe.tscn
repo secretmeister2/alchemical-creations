@@ -1,8 +1,31 @@
-[gd_scene format=3 uid="uid://go2hmj2s0gyu"]
+[gd_scene load_steps=4 format=3 uid="uid://go2hmj2s0gyu"]
 
-[node name="StraightPipe" type="Node2D"]
+[ext_resource type="Script" path="res://straight_pipe.gd" id="1_ik7os"]
+[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="1_lhhnq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3sw0"]
+size = Vector2(64, 64)
+
+[node name="StraightPipe" type="Control"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_ik7os")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(32, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_m3sw0")
 
 [node name="PipeSprite" type="Sprite2D" parent="."]
 clip_children = 2
+position = Vector2(32, 32)
+texture = ExtResource("1_lhhnq")
+hframes = 8
+vframes = 8
+frame = 8
 
 [node name="StraightFlow" type="Sprite2D" parent="PipeSprite"]
+
+[node name="StraightFill" type="Sprite2D" parent="PipeSprite"]

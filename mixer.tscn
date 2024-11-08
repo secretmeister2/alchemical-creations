@@ -3,10 +3,15 @@
 [ext_resource type="Texture2D" uid="uid://bqndt2sxtedgp" path="res://machines.png" id="1_a2eff"]
 [ext_resource type="Script" path="res://mixer.gd" id="1_ndnmx"]
 
-[node name="Mixer" type="Node2D"]
+[node name="Mixer" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+scale = Vector2(4, 4)
 script = ExtResource("1_ndnmx")
 
 [node name="MixerSprite" type="Sprite2D" parent="."]
+position = Vector2(32, 32)
+scale = Vector2(4, 4)
 texture = ExtResource("1_a2eff")
 hframes = 2
 vframes = 5

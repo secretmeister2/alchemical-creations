@@ -1,26 +1,60 @@
-extends Node2D
-
-var particle = preload("res://alchemy_particle.tscn")
+extends Control
+var tilescene = preload("res://tile.tscn")
+var availabletypes = {
+	"pipes": {
+		"straight": preload("res://straight_pipe.tscn")
+		}, 
+	"machines": {
+		"mixer": preload("res://mixer.tscn")
+		}
+		}
+var layout = []
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass # Replace with function body.
-
+	changefactorylayoutsize(10,10)
+	updatesupply()
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	add()
-	add()
-	add()
+	pass
 
 
 func _input(event: InputEvent) -> void:
-	if not event is InputEventMouseMotion:
-		var particles = particle.instantiate()
-		add_child(particles)
-		particles.reset_physics_interpolation()
-		particles.set_global_position(Vector2(100, 000))
-func add() -> void:
-	var particles = particle.instantiate()
-	add_child(particles)
-	particles.reset_physics_interpolation()
-	particles.set_global_position(Vector2(100, 000))
+	pass
+
+func changefactorylayoutsize(x: int, y: int) -> void:
+	while $TileContainer.get_children().size() < y:
+		var hbox = HBoxContainer.new()
+		hbox.name="Row"+str($TileContainer.get_children().size())
+		$TileContainer.add_child(hbox)
+	var i = $TileContainer.get_children().size()
+	while i > y:
+		$TileContainer.get_child($TileContainer.get_children().size()-1).queue_free()
+		i -= 1
+	for row in $TileContainer.get_children():
+		while row.get_children().size() < x:
+			var newtile = tilescene.instantiate()
+			newtile.name="Tile"+str(row.get_children().size())+"_"+str(row.name.right(-3))
+			row.add_child(newtile)
+		var j = row.get_children().size()
+		while j > x:
+			row.get_child(row.get_children().size()-1).queue_free()
+			j -= 1
+			
+func updatesupply() -> void:
+	for key in availabletypes.keys():
+			var label = Label.new()
+			label.text=key
+			label.set_anchors_preset(PRESET_CENTER_TOP)
+			var hbox = HBoxContainer.new()
+			hbox.name=key+"Sorter"
+			var vbox = VBoxContainer.new()
+			vbox.name = key
+			$Supply.add_child(vbox)
+			$Supply.get_node(key).add_child(label)
+			$Supply.get_node(key).add_child(hbox)
+			for grandkey in availabletypes[key].keys():
+				var item = availabletypes[key][grandkey].instantiate()
+				item.in_supply=true
+				$Supply.get_node(key).get_node(key+"Sorter").add_child(item)
