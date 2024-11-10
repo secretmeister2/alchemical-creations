@@ -1,4 +1,4 @@
-extends Control
+extends Card
 
 @export var in_supply = false
 # Called when the node enters the scene tree for the first time.
