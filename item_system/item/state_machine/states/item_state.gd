@@ -1,10 +1,10 @@
-class_name CardState
+class_name ItemState
 extends Node
 
 signal transitioned
 
 
-@export var card: Card
+@export var item: Item
 
 
 func _enter():

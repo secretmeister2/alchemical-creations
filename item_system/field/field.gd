@@ -11,23 +11,23 @@ func _ready():
 	$Label.text = name
 	
 	for child in cards_holder.get_children():
-		var card := child as Card
-		card.home_field = self
+		var item := child as Item
+		item.home_field = self
 
 
-func return_card_starting_position(card: Card):
-	card.reparent(cards_holder)
-	cards_holder.move_child(card, card.index)
+func return_item_starting_position(item: Item):
+	item.reparent(cards_holder)
+	cards_holder.move_child(item, item.index)
 
 
-func set_new_card(card: Card):
-	card_reposition(card)
-	card.home_field = self
+func set_new_card(item: Item):
+	item_reposition(item)
+	item.home_field = self
 
 
-func card_reposition(card: Card):
-	var field_areas = card.drop_point_detector.get_overlapping_areas()
-	var cards_areas = card.card_detector.get_overlapping_areas()
+func item_reposition(item:Item):
+	var field_areas = item.drop_point_detector.get_overlapping_areas()
+	var cards_areas = item.item_detector.get_overlapping_areas()
 	var index: int = 0
 	
 	if cards_areas.is_empty():
@@ -46,5 +46,5 @@ func card_reposition(card: Card):
 		
 		index += 1
 
-	card.reparent(cards_holder)
-	cards_holder.move_child(card, index)
+	item.reparent(cards_holder)
+	cards_holder.move_child(item, index)

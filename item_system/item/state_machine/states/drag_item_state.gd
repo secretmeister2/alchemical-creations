@@ -1,15 +1,15 @@
-extends CardState
+extends ItemState
 
 
 func _enter():
-	card.color_rect.color = Color.BLUE
-	card.label.text = "DRAG"
+	item.color_rect.color = Color.BLUE
+	item.label.text = "DRAG"
 	
-	card.index = card.get_index()
+	item.index = item.get_index()
 	
 	var canvas_layer := get_tree().get_first_node_in_group("fields")
 	if canvas_layer:
-		card.reparent(canvas_layer)
+		item.reparent(canvas_layer)
 
 
 func on_input(event: InputEvent):
@@ -17,7 +17,7 @@ func on_input(event: InputEvent):
 	var confirm = event.is_action_released("mouse_left")
 	
 	if mouse_motion:
-		card.global_position = card.get_global_mouse_position() - card.pivot_offset
+		item.global_position = item.get_global_mouse_position() - item.pivot_offset
 	
 	if confirm:
 		get_viewport().set_input_as_handled()

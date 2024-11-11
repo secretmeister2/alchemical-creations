@@ -1,15 +1,15 @@
 class_name CardStateMachine
 extends Node
 
-@export var initial_state: CardState
+@export var initial_state: ItemState
 
-var current_state: CardState
+var current_state: ItemState
 var states: Dictionary = {}
 
 
 func _ready():
 	for child in get_children():
-		if child is CardState:
+		if child is ItemState:
 			states[child.name.to_lower()] = child
 			child.transitioned.connect(on_child_transition)
 			
@@ -46,7 +46,7 @@ func on_mouse_exited():
 
 
 func on_child_transition(new_state_name):
-	var new_state: CardState = states.get(new_state_name.to_lower())
+	var new_state: ItemState = states.get(new_state_name.to_lower())
 	if !new_state:
 		prints(current_state, "transition to no state")
 		return

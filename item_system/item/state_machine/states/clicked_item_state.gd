@@ -1,9 +1,9 @@
-extends CardState
+extends ItemState
 
 
 func _enter():
-	card.color_rect.color = Color.ORANGE
-	card.label.text = "CLICKED"
+	item.color_rect.color = Color.ORANGE
+	item.label.text = "CLICKED"
 
 
 func on_input(event):
