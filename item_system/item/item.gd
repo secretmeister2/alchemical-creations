@@ -7,6 +7,9 @@ extends Control
 @onready var state_machine: ItemStateMachine = $ItemStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var home_field
+@export var in_supply = false
+@export var type: String = "none"
+@export var item_name: String = "none"
 var index: int = 0
 
 #func _ready():

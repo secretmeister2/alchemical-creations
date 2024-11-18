@@ -1,17 +1,32 @@
-[gd_scene load_steps=3 format=3 uid="uid://cuwy0hkvldpu7"]
+[gd_scene load_steps=4 format=3 uid="uid://twhk6weeoa4v"]
 
 [ext_resource type="Texture2D" uid="uid://bqndt2sxtedgp" path="res://machines.png" id="1_a2eff"]
 [ext_resource type="Script" path="res://mixer.gd" id="1_ndnmx"]
+[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_xfyiu"]
 
-[node name="Mixer" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-scale = Vector2(4, 4)
+[node name="Mixer" instance=ExtResource("1_xfyiu")]
 script = ExtResource("1_ndnmx")
+type = "machine"
+item_name = "mixer"
 
-[node name="MixerSprite" type="Sprite2D" parent="."]
+[node name="Idle" parent="ItemStateMachine" index="0" node_paths=PackedStringArray("item")]
+item = NodePath("../..")
+
+[node name="Click" parent="ItemStateMachine" index="1" node_paths=PackedStringArray("item")]
+item = NodePath("../..")
+
+[node name="Drag" parent="ItemStateMachine" index="2" node_paths=PackedStringArray("item")]
+item = NodePath("../..")
+
+[node name="Release" parent="ItemStateMachine" index="3" node_paths=PackedStringArray("item")]
+item = NodePath("../..")
+
+[node name="Hover" parent="ItemStateMachine" index="4" node_paths=PackedStringArray("item")]
+item = NodePath("../..")
+
+[node name="MixerSprite" type="Sprite2D" parent="." index="5"]
 position = Vector2(32, 32)
-scale = Vector2(4, 4)
+scale = Vector2(2, 2)
 texture = ExtResource("1_a2eff")
 hframes = 2
 vframes = 5

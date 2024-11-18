@@ -15,6 +15,17 @@ func _init():
 func set_adjacent_direction(direction: String, tile: Control):
 	adjacent[direction] = tile
 
+func _ready():
+	if get_parent().get_child_count() > 1:
+		var lefttile = get_parent().get_children()[get_index()-1]
+		adjacent["left"]= lefttile
+		lefttile.adjacent["right"]=self
+	if get_parent().get_parent().get_index() > 1:
+		var uprow = get_parent().get_parent().get_children()[get_parent().get_index()-1]
+		var uptile = uprow.get_children()[get_index()]
+		adjacent["up"]= uptile
+		uptile.adjacent["down"]=self
+
 func flow(fluid: Fluid):
 	# Handle fluid flow through the tile (this could depend on tile type, speed, etc.)
 	if fluid:
@@ -32,8 +43,14 @@ func receive_fluid(fluid: Fluid):
 	if item.type == "pipe":
 		self.fluid = fluid
 
-func set_item(item: Item):
-	for child in $ItemContainer.get_children(): if is_instance_of(child, Item) && child != item: child.queue_free()
+func set_item_type(type: String, item: Item):
+	var childsoftype=$ItemContainer.get_children().filter(func istype(titem: Node): if "type" in titem: return titem.type == type else: return false)
+	if not childsoftype.is_empty():
+		if not $ItemContainer.has_node(item.get_path()):
+			childsoftype[0].queue_free()
+		else:
+			item.set_global_position(global_position)
+
+		
 	item.reparent($ItemContainer)
 	item.home_field = self
-	item.set_adjacent_direction()

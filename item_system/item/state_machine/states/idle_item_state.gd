@@ -9,4 +9,3 @@ func _enter():
 
 func on_mouse_entered():
 	transitioned.emit("hover")
-	print("idle to hover")

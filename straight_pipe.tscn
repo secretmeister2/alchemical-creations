@@ -1,119 +1,30 @@
-[gd_scene load_steps=11 format=3 uid="uid://go2hmj2s0gyu"]
+[gd_scene load_steps=3 format=3 uid="uid://bilqa6iwr7kqx"]
 
-[ext_resource type="Script" path="res://straight_pipe.gd" id="1_ik7os"]
-[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="1_lhhnq"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/item_state_machine.gd" id="3_lku2d"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/states/idle_item_state.gd" id="4_7krt1"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/states/clicked_item_state.gd" id="5_60l48"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/states/drag_item_state.gd" id="6_pc5yq"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/states/release_card_state.gd" id="7_h6bw5"]
-[ext_resource type="Script" path="res://item_system/item/state_machine/states/hover_item_state.gd" id="8_csf51"]
+[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_ichgp"]
+[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="2_1nfmp"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_m3sw0"]
-size = Vector2(64, 64)
+[node name="straight_pipe" instance=ExtResource("1_ichgp")]
+type = "pipe"
+item_name = "straight"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lls8c"]
-size = Vector2(64, 64)
-
-[node name="StraightPipe" type="Control"]
-custom_minimum_size = Vector2(64, 64)
-layout_mode = 3
-anchors_preset = 0
-offset_right = 64.0
-offset_bottom = 64.0
-script = ExtResource("1_ik7os")
-
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(32, 32)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-shape = SubResource("RectangleShape2D_m3sw0")
-
-[node name="PipeSprite" type="Sprite2D" parent="."]
-clip_children = 2
-position = Vector2(32, 32)
-texture = ExtResource("1_lhhnq")
+texture = ExtResource("2_1nfmp")
 hframes = 8
 vframes = 8
 frame = 8
 
-[node name="StraightFlow" type="Sprite2D" parent="PipeSprite"]
-
-[node name="StraightFill" type="Sprite2D" parent="PipeSprite"]
-
-[node name="ColorRect" type="ColorRect" parent="."]
-visible = false
-offset_right = 64.0
-offset_bottom = 64.0
-mouse_filter = 1
-color = Color(0, 0, 0, 1)
-
-[node name="NameLabel" type="Label" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -23.5
-offset_right = 23.5
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "Name"
-
-[node name="Label" type="Label" parent="."]
-layout_mode = 1
-anchors_preset = 7
-anchor_left = 0.5
-anchor_top = 1.0
-anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -20.0
-offset_top = -23.0
-offset_right = 20.0
-grow_horizontal = 2
-grow_vertical = 0
-text = "State"
-
-[node name="ItemStateMachine" type="Node" parent="." node_paths=PackedStringArray("initial_state")]
-script = ExtResource("3_lku2d")
-initial_state = NodePath("Idle")
-
-[node name="Idle" type="Node" parent="ItemStateMachine" node_paths=PackedStringArray("item")]
-script = ExtResource("4_7krt1")
+[node name="Idle" parent="ItemStateMachine" index="0" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
 
-[node name="Click" type="Node" parent="ItemStateMachine" node_paths=PackedStringArray("item")]
-script = ExtResource("5_60l48")
+[node name="Click" parent="ItemStateMachine" index="1" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
 
-[node name="Drag" type="Node" parent="ItemStateMachine" node_paths=PackedStringArray("item")]
-script = ExtResource("6_pc5yq")
+[node name="Drag" parent="ItemStateMachine" index="2" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
 
-[node name="Release" type="Node" parent="ItemStateMachine" node_paths=PackedStringArray("item")]
-script = ExtResource("7_h6bw5")
+[node name="Release" parent="ItemStateMachine" index="3" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
 
-[node name="Hover" type="Node" parent="ItemStateMachine" node_paths=PackedStringArray("item")]
-script = ExtResource("8_csf51")
+[node name="Hover" parent="ItemStateMachine" index="4" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
-
-[node name="DropPointDetector" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 4
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DropPointDetector"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_lls8c")
-
-[node name="ItemsDetector" type="Area2D" parent="."]
-collision_layer = 8
-collision_mask = 8
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemsDetector"]
-position = Vector2(32, 32)
-shape = SubResource("RectangleShape2D_lls8c")
-
-[connection signal="gui_input" from="." to="." method="_on_gui_input"]
-[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
-[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]

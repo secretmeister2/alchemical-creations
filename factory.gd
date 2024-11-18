@@ -44,6 +44,7 @@ func changefactorylayoutsize(x: int, y: int) -> void:
 			
 func updatesupply() -> void:
 	for key in availabletypes.keys():
+		if not $Supply.has_node(key):
 			var label = Label.new()
 			label.text=key
 			label.set_anchors_preset(PRESET_CENTER_TOP)
@@ -54,7 +55,8 @@ func updatesupply() -> void:
 			$Supply.add_child(vbox)
 			$Supply.get_node(key).add_child(label)
 			$Supply.get_node(key).add_child(hbox)
-			for grandkey in availabletypes[key].keys():
-				var item = availabletypes[key][grandkey].instantiate()
-				item.in_supply=true
-				$Supply.get_node(key).get_node(key+"Sorter").add_child(item)
+		for item in availabletypes[key].keys():
+			if not $Supply.get_node(key).get_node(key+"Sorter").has_node(item):
+				var itemsc = availabletypes[key][item].instantiate()
+				itemsc.in_supply=true
+				$Supply.get_node(key).get_node(key+"Sorter").add_child(itemsc)
