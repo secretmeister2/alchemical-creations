@@ -1,4 +1,4 @@
-class_name CardStateMachine
+class_name ItemStateMachine
 extends Node
 
 @export var initial_state: ItemState

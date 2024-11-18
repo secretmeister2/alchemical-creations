@@ -2,13 +2,14 @@
 
 [ext_resource type="Script" path="res://item_system/field/field.gd" id="1_7p7dw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_crh71"]
-size = Vector2(210, 148)
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x5d2d"]
+size = Vector2(64, 64)
 
 [node name="Field" type="MarginContainer"]
+custom_minimum_size = Vector2(64, 64)
 anchors_preset = -1
-anchor_right = 0.364583
-anchor_bottom = 0.228395
+anchor_right = 0.0555556
+anchor_bottom = 0.0987654
 script = ExtResource("1_7p7dw")
 metadata/_edit_use_anchors_ = true
 
@@ -16,25 +17,14 @@ metadata/_edit_use_anchors_ = true
 modulate = Color(1, 1, 1, 0.278431)
 layout_mode = 2
 
-[node name="Label" type="Label" parent="."]
-layout_mode = 2
-text = "Name"
-
-[node name="CardsHolder" type="HBoxContainer" parent="."]
+[node name="ItemsHolder" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
 
-[node name="CardDropAreaRight" type="Area2D" parent="."]
-position = Vector2(210, 0)
+[node name="ItemDropArea" type="Area2D" parent="."]
+position = Vector2(32, 32)
+collision_layer = 5
 monitoring = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropAreaRight"]
-position = Vector2(106, 74)
-shape = SubResource("RectangleShape2D_crh71")
-
-[node name="CardDropAreaLeft" type="Area2D" parent="."]
-monitoring = false
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropAreaLeft"]
-position = Vector2(106, 74)
-shape = SubResource("RectangleShape2D_crh71")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ItemDropArea"]
+shape = SubResource("RectangleShape2D_x5d2d")

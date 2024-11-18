@@ -5,6 +5,12 @@
 
 [node name="Game" type="Node"]
 
+[node name="CanvasLayer_Field1_CardsHolder#Card" parent="." instance=ExtResource("2_5f2as")]
+
+[node name="CanvasLayer_Field1_CardsHolder#Card2" parent="." instance=ExtResource("2_5f2as")]
+
+[node name="CanvasLayer_Field1_CardsHolder#Card3" parent="." instance=ExtResource("2_5f2as")]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["fields"]]
 
 [node name="Field1" parent="CanvasLayer" instance=ExtResource("1_fkhir")]
@@ -19,15 +25,6 @@ offset_right = 210.0
 offset_bottom = -423.0
 grow_horizontal = 2
 grow_vertical = 0
-
-[node name="Card" parent="CanvasLayer/Field1/CardsHolder" index="0" instance=ExtResource("2_5f2as")]
-layout_mode = 2
-
-[node name="Card2" parent="CanvasLayer/Field1/CardsHolder" index="1" instance=ExtResource("2_5f2as")]
-layout_mode = 2
-
-[node name="Card3" parent="CanvasLayer/Field1/CardsHolder" index="2" instance=ExtResource("2_5f2as")]
-layout_mode = 2
 
 [node name="Field2" parent="CanvasLayer" instance=ExtResource("1_fkhir")]
 anchors_preset = 7

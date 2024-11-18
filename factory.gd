@@ -26,7 +26,7 @@ func _input(event: InputEvent) -> void:
 func changefactorylayoutsize(x: int, y: int) -> void:
 	while $TileContainer.get_children().size() < y:
 		var hbox = HBoxContainer.new()
-		hbox.name="Row"+str($TileContainer.get_children().size())
+		hbox.name="Row_"+str($TileContainer.get_children().size())
 		$TileContainer.add_child(hbox)
 	var i = $TileContainer.get_children().size()
 	while i > y:
@@ -35,7 +35,7 @@ func changefactorylayoutsize(x: int, y: int) -> void:
 	for row in $TileContainer.get_children():
 		while row.get_children().size() < x:
 			var newtile = tilescene.instantiate()
-			newtile.name="Tile"+str(row.get_children().size())+"_"+str(row.name.right(-3))
+			newtile.name="Tile_"+str(row.get_children().size())+str(row.name.right(-3))
 			row.add_child(newtile)
 		var j = row.get_children().size()
 		while j > x:

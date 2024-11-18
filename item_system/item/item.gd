@@ -1,21 +1,17 @@
 class_name Item
 extends Control
 
-
 @onready var color_rect: ColorRect = $ColorRect
 @onready var label: Label = $Label
 @onready var name_label: Label = %NameLabel
-@onready var state_machine: CardStateMachine = $ItemStateMachine
+@onready var state_machine: ItemStateMachine = $ItemStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
-@onready var card_detector: Area2D = $CardsDetector
-@onready var home_field: Field
-
+@onready var home_field
 var index: int = 0
 
-
-func _ready():
-	name_label.text = name
-
+#func _ready():
+	#print(get_children())
+	
 
 func _input(event):
 	state_machine.on_input(event)

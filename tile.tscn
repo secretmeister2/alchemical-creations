@@ -10,12 +10,24 @@ size = Vector2(64, 64)
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 3
 anchors_preset = 0
+offset_left = 1.0
+offset_right = 51.0
+offset_bottom = 50.0
 script = ExtResource("1_hbcrr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_erxwq")
 
 [node name="TileArea" type="Area2D" parent="."]
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileArea"]
 shape = SubResource("RectangleShape2D_x8lbj")
+
+[node name="ItemContainer" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0

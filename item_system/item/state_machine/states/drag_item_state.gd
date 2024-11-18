@@ -6,11 +6,6 @@ func _enter():
 	item.label.text = "DRAG"
 	
 	item.index = item.get_index()
-	
-	var canvas_layer := get_tree().get_first_node_in_group("fields")
-	if canvas_layer:
-		item.reparent(canvas_layer)
-
 
 func on_input(event: InputEvent):
 	var mouse_motion := event is InputEventMouseMotion
