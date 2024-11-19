@@ -17,9 +17,6 @@ func _ready():
 				for sub_child in child.get_children():
 					states[child.name.to_lower() + '/' + sub_child.name.to_lower()] = sub_child
 					sub_child.transitioned.connect(on_child_transition)
-
-	print(states)
-	
 	if initial_state:
 		initial_state.call_deferred("_enter")
 		current_state = initial_state

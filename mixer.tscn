@@ -8,6 +8,7 @@
 script = ExtResource("1_ndnmx")
 type = "machine"
 item_name = "mixer"
+dirs_pointed = ["bottom"]
 
 [node name="Idle" parent="ItemStateMachine" index="0" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
@@ -24,7 +25,7 @@ item = NodePath("../..")
 [node name="Hover" parent="ItemStateMachine" index="4" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
 
-[node name="MixerSprite" type="Sprite2D" parent="." index="5"]
+[node name="Sprite" type="Sprite2D" parent="." index="5"]
 position = Vector2(32, 32)
 scale = Vector2(2, 2)
 texture = ExtResource("1_a2eff")

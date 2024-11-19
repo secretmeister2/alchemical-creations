@@ -18,6 +18,6 @@ func on_input(event: InputEvent):
 		transitioned.emit("Release")
 	if Input.is_action_just_pressed("rotate_left") or Input.is_action_just_pressed("rotate_right"):
 		if Input.get_axis("rotate_left", "rotate_right") < 0:
-			item.find_child("*Sprite").rotate(PI/2)
+			item.itemrotate(true)
 		elif Input.get_axis("rotate_left", "rotate_right") > 0:
-			item.find_child("*Sprite").rotate(-PI/2)
+			item.itemrotate(false)

@@ -3,7 +3,7 @@ extends Control
 var fluid: Fluid = null  # Store fluid if it's a pipe
 var item: Item  # Type of tile ("pipe", "machine", etc.)
 var adjacent: Dictionary
-
+var send_directions = []
 func _init():
 	self.adjacent = {
 		"top": null,
@@ -25,32 +25,30 @@ func _ready():
 		var uptile = uprow.get_children()[get_index()]
 		adjacent["up"]= uptile
 		uptile.adjacent["down"]=self
-
-func flow(fluid: Fluid):
-	# Handle fluid flow through the tile (this could depend on tile type, speed, etc.)
-	if fluid:
-		# Simulate fluid movement
-		if item.type == "pipe":
-			# Move fluid through the pipe, based on viscosity and other factors
-			# For now, just pass the fluid to an adjacent tile
-			for direction in adjacent.keys():
-				var next_tile = adjacent[direction]
-				if next_tile and next_tile.type == "pipe":
-					# Pass fluid to adjacent pipe (this is a very simplified flow)
-					next_tile.receive_fluid(fluid)
-
-func receive_fluid(fluid: Fluid):
-	if item.type == "pipe":
-		self.fluid = fluid
-
-func set_item_type(type: String, item: Item):
-	var childsoftype=$ItemContainer.get_children().filter(func istype(titem: Node): if "type" in titem: return titem.type == type else: return false)
-	if not childsoftype.is_empty():
-		if not $ItemContainer.has_node(item.get_path()):
-			childsoftype[0].queue_free()
-		else:
-			item.set_global_position(global_position)
-
 		
+func set_item_type(type: String, item: Item):
+	if get_item_of_type(type) == self:
+		item.set_global_position(global_position)
+	else:
+		get_item_of_type(type).queue_free()
 	item.reparent($ItemContainer)
 	item.home_field = self
+
+func get_item_of_type(type:String):
+	var childsoftype = $ItemContainer.get_children().filter(func istype(titem: Node): if "type" in titem: return titem.type == type else: return false)
+	if childsoftype.size()>1: print("Multiple items of same type in tile: Items "+childsoftype+" of type '"+type+"' found in "+self)
+	if childsoftype.size()==0: return false
+	return childsoftype[0]
+
+func receive_fluid(fromdir:String, newfluid: Fluid):
+	if not fluid:
+		var pipe = get_item_of_type("pipe")
+		for dir in pipe.dirs_pointed: if dir != fromdir: send_directions.append(dir)
+		fluid=newfluid
+		fluid.modify_effects("intensity", 0.99, fluid.effects.keys(), false)
+		if get_item_of_type("machine"):
+			var machine = get_item_of_type("machine")
+			if machine.dirs_pointed[0] in send_directions:
+				fluid = machine.input(fluid)
+			else:
+				get_parent().sim_fail("FluidInWrongEndOfMachine")

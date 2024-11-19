@@ -1,19 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://bilqa6iwr7kqx"]
+[gd_scene load_steps=4 format=3 uid="uid://dm14cfb2cqko3"]
 
-[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_ichgp"]
-[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="2_1nfmp"]
+[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_qha4e"]
+[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="2_7bite"]
+[ext_resource type="Script" path="res://curve_pipe.gd" id="2_cssfx"]
 
-[node name="straight_pipe" instance=ExtResource("1_ichgp")]
+[node name="curve_pipe" instance=ExtResource("1_qha4e")]
+script = ExtResource("2_cssfx")
 type = "pipe"
-item_name = "straight"
-dirs_pointed = ["top", "bottom"]
+item_name = "curve"
+dirs_pointed = ["left", "bottom"]
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(32, 32)
-texture = ExtResource("2_1nfmp")
+texture = ExtResource("2_7bite")
 hframes = 8
 vframes = 8
-frame = 8
+frame = 1
 
 [node name="Idle" parent="ItemStateMachine" index="0" node_paths=PackedStringArray("item")]
 item = NodePath("../..")
