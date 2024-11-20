@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://db4asmdj6tids"]
 
-[ext_resource type="Texture2D" uid="uid://duulbs05j8r8t" path="res://tile.png" id="1_erxwq"]
-[ext_resource type="Script" path="res://tile.gd" id="1_hbcrr"]
+[ext_resource type="Script" path="res://main_scripts/tile.gd" id="1_r84bn"]
+[ext_resource type="Texture2D" uid="uid://duulbs05j8r8t" path="res://tile.png" id="2_ylb7b"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8lbj"]
 size = Vector2(64, 64)
@@ -13,11 +13,11 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
-script = ExtResource("1_hbcrr")
+script = ExtResource("1_r84bn")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(32, 32)
-texture = ExtResource("1_erxwq")
+texture = ExtResource("2_ylb7b")
 
 [node name="TileArea" type="Area2D" parent="."]
 position = Vector2(32, 32)

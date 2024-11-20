@@ -1,16 +1,16 @@
 [gd_scene load_steps=3 format=3 uid="uid://bilqa6iwr7kqx"]
 
-[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_ichgp"]
-[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="2_1nfmp"]
+[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_xhx50"]
+[ext_resource type="Texture2D" uid="uid://b0u1oqiftlt1k" path="res://pipes.png" id="2_4dgwm"]
 
-[node name="straight_pipe" instance=ExtResource("1_ichgp")]
+[node name="straight_pipe" instance=ExtResource("1_xhx50")]
 type = "pipe"
 item_name = "straight"
 dirs_pointed = ["top", "bottom"]
 
 [node name="Sprite" type="Sprite2D" parent="." index="0"]
 position = Vector2(32, 32)
-texture = ExtResource("2_1nfmp")
+texture = ExtResource("2_4dgwm")
 hframes = 8
 vframes = 8
 frame = 8

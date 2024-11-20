@@ -1,12 +1,12 @@
 extends Control
-var tilescene = preload("res://tile.tscn")
+var tilescene = preload("res://main_scenes/tile.tscn")
 var availabletypes = {
 	"pipes": {
-		"straight": preload("res://straight_pipe.tscn"),
-		"curve": preload("res://curve_pipe.tscn")
+		"straight": preload("res://main_scenes/straight_pipe.tscn"),
+		"curve": preload("res://main_scenes/curve_pipe.tscn")
 		}, 
 	"machines": {
-		"mixer": preload("res://mixer.tscn")
+		"mixer": preload("res://main_scenes/mixer.tscn")
 		}
 		}
 var layout = []

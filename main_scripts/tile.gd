@@ -4,6 +4,7 @@ var fluid: Fluid = null  # Store fluid if it's a pipe
 var item: Item  # Type of tile ("pipe", "machine", etc.)
 var adjacent: Dictionary
 var send_directions = []
+@export var pipe_mod: EffectTransform
 func _init():
 	self.adjacent = {
 		"top": null,
@@ -45,7 +46,8 @@ func receive_fluid(fromdir:String, newfluid: Fluid):
 		var pipe = get_item_of_type("pipe")
 		for dir in pipe.dirs_pointed: if dir != fromdir: send_directions.append(dir)
 		fluid=newfluid
-		fluid.modify_effects("intensity", 0.99, fluid.effects.keys(), false)
+		for effect in fluid.effects:
+			effect.
 		if get_item_of_type("machine"):
 			var machine = get_item_of_type("machine")
 			if machine.dirs_pointed[0] in send_directions:

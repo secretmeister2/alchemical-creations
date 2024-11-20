@@ -1,11 +1,11 @@
 [gd_scene load_steps=4 format=3 uid="uid://twhk6weeoa4v"]
 
-[ext_resource type="Texture2D" uid="uid://bqndt2sxtedgp" path="res://machines.png" id="1_a2eff"]
-[ext_resource type="Script" path="res://mixer.gd" id="1_ndnmx"]
-[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_xfyiu"]
+[ext_resource type="PackedScene" uid="uid://3trgkf0u68ry" path="res://item_system/item/item.tscn" id="1_ial1n"]
+[ext_resource type="Script" path="res://main_scripts/mixer.gd" id="2_piejj"]
+[ext_resource type="Texture2D" uid="uid://bqndt2sxtedgp" path="res://machines.png" id="3_xlftc"]
 
-[node name="Mixer" instance=ExtResource("1_xfyiu")]
-script = ExtResource("1_ndnmx")
+[node name="Mixer" instance=ExtResource("1_ial1n")]
+script = ExtResource("2_piejj")
 type = "machine"
 item_name = "mixer"
 dirs_pointed = ["bottom"]
@@ -28,6 +28,6 @@ item = NodePath("../..")
 [node name="Sprite" type="Sprite2D" parent="." index="5"]
 position = Vector2(32, 32)
 scale = Vector2(2, 2)
-texture = ExtResource("1_a2eff")
+texture = ExtResource("3_xlftc")
 hframes = 2
 vframes = 5
