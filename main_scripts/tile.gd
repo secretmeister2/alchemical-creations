@@ -28,7 +28,8 @@ func _ready():
 		uptile.adjacent["down"]=self
 		
 func set_item_type(type: String, item: Item):
-	if get_item_of_type(type) == self:
+	if get_item_of_type(type) == null: pass
+	elif get_item_of_type(type) == self:
 		item.set_global_position(global_position)
 	else:
 		get_item_of_type(type).queue_free()
@@ -38,7 +39,7 @@ func set_item_type(type: String, item: Item):
 func get_item_of_type(type:String):
 	var childsoftype = $ItemContainer.get_children().filter(func istype(titem: Node): if "type" in titem: return titem.type == type else: return false)
 	if childsoftype.size()>1: print("Multiple items of same type in tile: Items "+childsoftype+" of type '"+type+"' found in "+self)
-	if childsoftype.size()==0: return false
+	if childsoftype.size()==0: return null
 	return childsoftype[0]
 
 func receive_fluid(fromdir:String, newfluid: Fluid):
@@ -46,8 +47,6 @@ func receive_fluid(fromdir:String, newfluid: Fluid):
 		var pipe = get_item_of_type("pipe")
 		for dir in pipe.dirs_pointed: if dir != fromdir: send_directions.append(dir)
 		fluid=newfluid
-		for effect in fluid.effects:
-			effect.
 		if get_item_of_type("machine"):
 			var machine = get_item_of_type("machine")
 			if machine.dirs_pointed[0] in send_directions:
