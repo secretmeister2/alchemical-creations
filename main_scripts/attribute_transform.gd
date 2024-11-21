@@ -1,7 +1,5 @@
 extends Resource
 class_name AttributeTransform
-##The potion effect name to operate on
-@export var effect_on:String
 enum effect_class{
 	ADDITIVE, ##The effect will add a constant value to an attribute
 	MULTIPLICATIVE, ##The effect will multiply the attribute by a value
@@ -15,11 +13,8 @@ enum effect_class{
 @export var affected_attribute:String
 
 ##Applies the definied transform to a fluid
-func transform(fluid:Fluid)-> Fluid:
-	for effect in fluid.effects:
-		if effect.name == effect_on:
-			var attribute = effect.get(affected_attribute)
-			match transform_type:
-				effect_class.ADDITIVE: attribute=attribute+value
-				effect_class.MULTIPLICATIVE: attribute=attribute*value
-	return fluid
+func transform(effect:PotionEffect)-> PotionEffect:
+	match transform_type:
+			effect_class.ADDITIVE: effect.attributes[affected_attribute]+=value
+			effect_class.MULTIPLICATIVE: effect.attributes[affected_attribute]*=value
+	return effect

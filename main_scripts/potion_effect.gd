@@ -2,11 +2,9 @@ extends Resource
 class_name PotionEffect
 ##Name of effect
 @export var name:String
-##Duration of effect
-@export var duration:float
-##Intensity of effect
-@export var intenisty:float
+##Duration and intensity of effect
+@export var attributes={"duration":1.0, "intensity":1.0}
 func _init(name, duration, intensity):
 	self.name=name
-	self.duration=duration
-	self.intensity=intensity
+	self.attributes[duration]=duration
+	self.attributes[intensity]=intensity
