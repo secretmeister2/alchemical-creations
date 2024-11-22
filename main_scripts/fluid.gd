@@ -20,7 +20,7 @@ func modify(effect_list:EffectList):
 	##Modifies effects
 	for effect in effects:
 		for transform:AttributeTransform in effect_list.get(effect.name):
-			transform.transform(effect)
+			effect = transform.transform(effect)
 	##Modifies colors
 	color=color.lerp(effect_list.color, 0.25)
 	##Modifies viscosity

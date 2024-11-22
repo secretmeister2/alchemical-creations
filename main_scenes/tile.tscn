@@ -1,7 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://db4asmdj6tids"]
+[gd_scene load_steps=6 format=3 uid="uid://db4asmdj6tids"]
 
 [ext_resource type="Script" path="res://main_scripts/tile.gd" id="1_r84bn"]
+[ext_resource type="Script" path="res://main_scripts/attribute_transform.gd" id="2_1s8s6"]
 [ext_resource type="Texture2D" uid="uid://duulbs05j8r8t" path="res://tile.png" id="2_ylb7b"]
+
+[sub_resource type="Resource" id="Resource_fvg7j"]
+script = ExtResource("2_1s8s6")
+transform_type = 1
+value = 0.99
+affected_attribute = "intensity"
+metadata/_custom_type_script = ExtResource("2_1s8s6")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_x8lbj"]
 size = Vector2(64, 64)
@@ -14,6 +22,7 @@ anchors_preset = 0
 offset_right = 60.0
 offset_bottom = 60.0
 script = ExtResource("1_r84bn")
+pipe_mod = SubResource("Resource_fvg7j")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(32, 32)

@@ -4,7 +4,7 @@ var fluid: Fluid = null  # Store fluid if it's a pipe
 var item: Item  # Type of tile ("pipe", "machine", etc.)
 var adjacent: Dictionary
 var send_directions = []
-@export var pipe_mod: EffectTransform
+@export var pipe_mod: AttributeTransform
 func _init():
 	self.adjacent = {
 		"top": null,
@@ -53,3 +53,5 @@ func receive_fluid(fromdir:String, newfluid: Fluid):
 				fluid = machine.input(fluid)
 			else:
 				get_parent().sim_fail("FluidInWrongEndOfMachine")
+		for effect in fluid.effects:
+			effect = pipe_mod.transform(effect)
