@@ -1,7 +1,7 @@
 extends Resource
 class_name PotionEffect
 ##Name of effect
-@export var name:String
+@export var type:Global.PotionTypes
 ##Duration and intensity of effect
 @export var attributes={"duration":1.0, "intensity":1.0}
 func _init(name, duration, intensity):

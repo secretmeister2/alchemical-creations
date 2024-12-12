@@ -1,13 +1,7 @@
 extends Resource
 class_name EffectList
-##The transforms to apply to the poison potion effect
-@export var poison: Array[AttributeTransform]
-##The transforms to apply to the health potion effect
-@export var health: Array[AttributeTransform]
-##The transforms to apply to the flammable potion effect
-@export var flammable: Array[AttributeTransform]
-##The transforms to apply to the vision potion effect
-@export var vision: Array[AttributeTransform]
+##A dict mapping potion effect names to transforms
+@export var effects: Dictionary[Global.PotionTypes,AttributeTransform]
 ##The color to blend with
 @export var color:Color
 ##The number to multiply viscosity by

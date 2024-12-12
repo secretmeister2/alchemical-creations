@@ -4,5 +4,5 @@ class_name Reagent
 @export var name:String
 ##Sprite for reagent to use
 @export var sprite:CompressedTexture2D
-##A dictionary matching machine names to lists of effects to apply
-@export var effects:Dictionary[String,EffectList]
+##An array of classes that the reagent has
+@export var classes:Array[ReagentClass]

@@ -7,10 +7,14 @@ extends Control
 @onready var state_machine: ItemStateMachine = $ItemStateMachine
 @onready var drop_point_detector: Area2D = $DropPointDetector
 @onready var home_field
-@export var in_supply = false
-@export var type: String = "none"
+var in_supply = false
+## The type of the item
+@export var type: Global.ItemTypes
+## The name of the item
 @export var item_name: String = "none"
+## The monetary cost of the item
 @export var cost: int
+## The initial directions the item points
 @export var dirs_pointed: Array = []
 var index: int = 0
 

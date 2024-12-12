@@ -6,7 +6,6 @@
 
 [node name="curve_pipe" instance=ExtResource("1_634y2")]
 script = ExtResource("2_7s6i4")
-type = "pipe"
 item_name = "curve"
 dirs_pointed = ["left", "bottom"]
 

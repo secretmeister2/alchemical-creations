@@ -2,4 +2,5 @@ extends Item
 var reagent: Reagent
 
 func input(fluid: Fluid):
-	fluid.modify(reagent.effects[name])
+	for tag in reagent.classes:
+		pass
