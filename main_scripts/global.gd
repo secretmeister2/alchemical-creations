@@ -1,4 +1,4 @@
-extends Script
+extends Node
 enum PotionTypes{
 	Health,
 	Regen,
